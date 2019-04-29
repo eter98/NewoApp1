@@ -1,0 +1,11 @@
+version: '2'
+services:
+    newoapp1-postgresql:
+        image: postgres:10.4
+        # volumes:
+        #     - ~/volumes/jhipster/newoapp1/postgresql/:/var/lib/postgresql/data/
+        environment:
+            - POSTGRES_USER=newoapp1
+            - POSTGRES_PASSWORD=
+        ports:
+            - 5432:5432
