@@ -1,0 +1,28 @@
+{
+    "newoapp1App": {
+        "invitados": {
+            "home": {
+                "title": "Invitados",
+                "createLabel": "Criar novo Invitados",
+                "createOrEditLabel": "Criar ou editar Invitados"
+            },
+            "created": "Um novo Invitados foi criado com o identificador {{ param }}",
+            "updated": "Um Invitados foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Invitados foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Invitados {{ id }}?"
+            },
+            "detail": {
+                "title": "Invitados"
+            },
+            "nombre": "Nombre",
+            "apellido": "Apellido",
+            "identificacion": "Identificacion",
+            "correo": "Correo",
+            "telefono": "Telefono",
+            "tiempoMaximo": "Tiempo Maximo",
+            "entradaInvitados": "Entrada Invitados",
+            "miembros": "Miembros"
+        }
+    }
+}

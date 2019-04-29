@@ -1,0 +1,330 @@
+entity Miembros {
+    nombre String,
+    apellido String,
+    nacionalidad String,
+    fechaNacimiento LocalDate,
+    fechaRegistro LocalDate,
+    genero String,
+    correoElectronico String,
+    celular String,
+    idEquipoEmprearial Integer,
+    idSede Integer
+    derechosDeCompra Integer,
+    tipoAcceso Integer
+}
+
+entity PerfilMiembro {
+	biografia TextBlob,
+    foto1 ImageBlob,
+    foto2 ImageBlob,
+    fot3 ImageBlob,
+    conocimientosQueDomina String,
+    temasDeInteres String,
+    facebook String,
+    instagram String,
+    idGoogle String,
+    twiter String
+}
+
+relationship OneToOne {
+	PerfilMiembro to Miembros,
+    Landing to Sedes,
+    Miembros to EspacioLibre,
+    EntradaInvitados to EspacioLibre,
+    EntradaMiembros to Sedes,
+    Miembros to HostSede,
+    Reservas to EspaciosReserva,
+    RegistroCompra to Miembros,
+    RegistroCompra to EspacioLibre,
+    RegistroCompra to EntradaInvitados,
+    EquipoEmpresas to Facturacion,
+    EquipoEmpresas to PerfilEquipoEmpresa,
+    Facturacion to Empresa,
+    Sedes to Ciudad,
+    EntradaMiembros to Miembros,
+    EntradaMiembros to EspacioLibre,
+    EntradaMiembros to EspaciosReserva,
+    EntradaInvitados to Invitados,
+    EntradaInvitados to EspacioLibre,
+    EntradaInvitados to EspaciosReserva,
+    HostSede to Sedes,
+    EspaciosReserva to Sedes,
+    EspacioLibre to Sedes,
+    MiembrosEquipoEmpresas to EquipoEmpresas,
+    MiembrosEquipoEmpresas to Miembros,
+    Facturacion to CuentaAsociada,
+    Miembros to Beneficio,
+    ProductosServicios to PerfilEquipoEmpresa,
+    PerfilEquipoEmpresa to Empresa
+    
+}
+
+relationship OneToMany {
+    Miembros to Invitados,
+    Miembros to Blog,
+    Miembros to Evento,
+    Evento to Grupos,
+    Miembros to Reservas,
+    Reservas to EntradaInvitados,
+    Facturacion to RegistroCompra,
+    Reservas to RegistroCompra,
+    Pais to Ciudad,
+    Grupos to MiembrosGrupo,
+    Miembros to MiembrosGrupo
+}
+
+
+entity EntradaMiembros {
+	fechaEntrada LocalDate,
+    horaEntrada String,
+    tipoEntrada Integer,
+    tiempoMaximo Boolean
+}
+
+entity Invitados {
+	nombre String,
+    apellido String,
+    identificacion String,
+    correo String,
+    telefono String,
+    tiempoMaximo Boolean
+}
+entity EntradaInvitados {
+    fechaEntrada LocalDate,
+    horaEntrada String,
+	tipoEntrada TipoEntradad
+}
+
+enum TipoEntradad {
+    INGRESO, SALIDA
+}
+entity Sedes {
+	nombreSede String,
+    coordenadaX Double,
+    coordenadaY Double,
+    direccion String,
+    telefonoComunidad String,
+    telefonoNegocio String,
+    capacidadEspacioLibre Integer,
+    descripcionSede TextBlob,
+    horario String,
+    imagen1 ImageBlob,
+    imagen2 ImageBlob
+}
+
+entity EspacioLibre {
+    capacidadInstalada Integer,
+    tipoDeEspacios Integer,
+    wifi String
+    tarifa1hMiembro Integer,
+    tarifa2hMiembro Integer,
+    tarifa3hMiembro Integer,
+    tarifa4hMiembro Integer,
+    tarifa5hMiembro Integer,
+    tarifa6hMiembro Integer,
+    tarifa7hMiembro Integer,
+    tarifa8hMiembro Integer,
+    tarifa1hInvitado Integer,
+    tarifa2hInvitado Integer,
+    tarifa3hInvitado Integer,
+    tarifa4hInvitado Integer,
+    tarifa5hInvitado Integer,
+    tarifa6hInvitado Integer,
+    tarifa7hInvitado Integer,
+    tarifa8hInvitado Integer,
+}
+
+entity HostSede {
+	nombre String,
+}
+
+entity Reservas {
+	fechaEntrada LocalDate,
+    horaEntrada String,
+    fechaSalida LocalDate,
+    horaSalida String
+}
+
+entity EspaciosReserva {
+	nombre String,
+    descripcion String,
+    facilidades String,
+    capacidad Integer,
+    apertura String,
+    cierre String,
+    tarifa1Hora Integer,
+    tarifa2Hora Integer,
+    tarifa3Hora Integer,
+    tarifa4Hora Integer,
+    tarifa5Hora Integer,
+    tarifa6Hora Integer,
+    tarifa7Hora Integer,
+    tarifa8Hora Integer,
+    apertura String,
+    cierre String,
+    estadoReserva Integer,
+    wifi String
+    
+}
+
+
+entity RegistroCompra {
+	
+}
+
+entity Facturacion {
+	titularFactura String,
+    tipoPersona TipoPersonad,
+    periodicidadFacturacion PeriodicidadFacturaciond,
+    maximoMonto Integer
+}
+enum TipoPersonad {
+    INATURAL, JURIDICA
+}
+enum PeriodicidadFacturaciond {
+    SEMANAL, QUINCENAL, MENSUAL, BIMESTRAL, TRIMESTRAL
+}
+entity EquipoEmpresas {
+	nombre String,
+    telefono String,
+    correo String,
+    direccion String,
+    descripcion TextBlob,
+    logos ImageBlob,
+    paginaWeb String
+}
+
+entity MiembrosEquipoEmpresas{
+	
+}
+entity CuentaAsociada {
+	identificaciontitular String,
+    correoTitular String,
+    nombreTitular String,
+    apellidoTitular String,
+    numeroCuenta String,
+    tipoCuenta String,
+    codigoSeguridad String,
+    fechaVencimiento LocalDate
+}
+
+entity Beneficio {
+	tipoBeneficio String,
+    descuento Integer
+}
+
+entity PerfilEquipoEmpresa {
+    biografia TextBlob,
+    foto1 ImageBlob,
+    foto2 ImageBlob,
+    fot3 ImageBlob,
+    conocimientosQueDomina String,
+    temasDeInteres String,
+    facebook String,
+    instagram String,
+    idGoogle String,
+    twiter String
+}
+
+entity Empresa {
+	razonSocial String,
+    nit String,
+    direccion String,
+    telefono String,
+    correo String,
+    celular String
+}
+entity Landing {
+    descripcion String,
+    telefonoNegocio String,
+    numeroPuestos Integer,
+    tarifa Integer,
+    fotografia ImageBlob,
+    iva Boolean
+}
+
+entity ProductosServicios {
+	nombreProducto String,
+    foto ImageBlob,
+    descripcion String,
+    inventariables Integer,
+    valor Integer,
+    impuesto Impuestod
+}
+
+enum Impuestod {
+    IVA19, IVA6, IVA0, ICO, IPOCONSUMO8
+}
+entity Pais {
+ 	nombrePais String
+}
+
+entity Ciudad {
+	nombreCiudad String
+}
+
+entity Blog {
+	tipoContenido Integer,
+    descripcion String,
+    contenidos TextBlob,
+    audio AnyBlob,
+    video AnyBlob,
+    foto1 ImageBlob,
+    foto2 ImageBlob,
+    banner ImageBlob,
+    tipoConsumo TipoConsumod,
+    valor Float,
+    impuesto Impuestod,
+    categoria Categoriad,
+    estadoPublicacion EstadoPublicaciond
+}
+enum TipoConsumod {
+    GRATIS, PAGO
+}
+
+enum EstadoPublicaciond {
+    BORRADOR, EN_REVISION, APROBADO, PUBLICADO, RECHAZADO
+}
+enum Categoriad {
+    GENERAL, DE_GRUPO, CORPORATIVO, INSTITUCIONAL, INTERNO
+}
+entity Evento {
+	nombreEvento Integer,
+    descripcion TextBlob,
+    audio AnyBlob,
+    video AnyBlob,
+    foto1 ImageBlob,
+    foto2 ImageBlob,
+    banner ImageBlob,
+    tipoConsumo TipoConsumod,
+    valor Float,
+    impuesto Impuestod,
+    categoria Categoriad,
+    tipoEvento Integer
+}
+enum TipoEventod {
+    INTERNO, EXTERNO, PATROCINADO, PUBLICO
+}
+entity Grupos {
+	nombreGrupo String,
+    instagram String,
+    facebook String,
+    twiter String,
+    linkedIn String,
+    tipoGrupo TipoGrupod,
+    categoria Categoriad,
+    tipoConsumo TipoConsumod,
+    valorSuscripcion Integer,
+    reglasGrupo TextBlob,
+    audio AnyBlob,
+    video AnyBlob,
+    foto1 ImageBlob,
+    foto2 ImageBlob,
+    banner ImageBlob,
+}
+enum TipoGrupod {
+    INTERNO, EXTERNO, PATROCINADO, PUBLICO
+}
+entity MiembrosGrupo {
+
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity MiembrosGrupo.
+    -->
+    <changeSet id="20190429153807-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="grupos_id"
+                                 baseTableName="miembros_grupo"
+                                 constraintName="fk_miembros_grupo_grupos_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="grupos"/>
+
+        <addForeignKeyConstraint baseColumnNames="miembros_id"
+                                 baseTableName="miembros_grupo"
+                                 constraintName="fk_miembros_grupo_miembros_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="miembros"/>
+
+    </changeSet>
+</databaseChangeLog>

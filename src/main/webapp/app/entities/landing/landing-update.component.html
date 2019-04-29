@@ -1,0 +1,73 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-landing-heading" jhiTranslate="newoapp1App.landing.home.createOrEditLabel">Create or edit a Landing</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!landing.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="landing.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.landing.descripcion" for="field_descripcion">Descripcion</label>
+                    <input type="text" class="form-control" name="descripcion" id="field_descripcion"
+                        [(ngModel)]="landing.descripcion" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.landing.telefonoNegocio" for="field_telefonoNegocio">Telefono Negocio</label>
+                    <input type="text" class="form-control" name="telefonoNegocio" id="field_telefonoNegocio"
+                        [(ngModel)]="landing.telefonoNegocio" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.landing.numeroPuestos" for="field_numeroPuestos">Numero Puestos</label>
+                    <input type="number" class="form-control" name="numeroPuestos" id="field_numeroPuestos"
+                        [(ngModel)]="landing.numeroPuestos" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.landing.tarifa" for="field_tarifa">Tarifa</label>
+                    <input type="number" class="form-control" name="tarifa" id="field_tarifa"
+                        [(ngModel)]="landing.tarifa" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.landing.fotografia" for="field_fotografia">Fotografia</label>
+                    <div>
+                        <img [src]="'data:' + landing.fotografiaContentType + ';base64,' + landing.fotografia" style="max-height: 100px;" *ngIf="landing.fotografia" alt="landing image"/>
+                        <div *ngIf="landing.fotografia" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{landing.fotografiaContentType}}, {{byteSize(landing.fotografia)}}</span>
+                            <button type="button" (click)="clearInputImage('fotografia', 'fotografiaContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_fotografia" (change)="setFileData($event, landing, 'fotografia', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="fotografia" id="field_fotografia"
+                        [(ngModel)]="landing.fotografia" />
+                    <input type="hidden" class="form-control" name="fotografiaContentType" id="field_fotografiaContentType"
+                        [(ngModel)]="landing.fotografiaContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.landing.iva" for="field_iva">Iva</label>
+                    <input type="checkbox" class="form-control" name="iva" id="field_iva"
+                        [(ngModel)]="landing.iva" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.landing.sedes" for="field_sedes">Sedes</label>
+                    <select class="form-control" id="field_sedes" name="sedes" [(ngModel)]="landing.sedes">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="sedesOption.id === landing.sedes?.id ? landing.sedes : sedesOption" *ngFor="let sedesOption of sedes; trackBy: trackSedesById">{{sedesOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

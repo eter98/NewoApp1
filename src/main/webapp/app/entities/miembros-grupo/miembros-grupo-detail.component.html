@@ -1,0 +1,35 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="miembrosGrupo">
+            <h2><span jhiTranslate="newoapp1App.miembrosGrupo.detail.title">Miembros Grupo</span> {{miembrosGrupo.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="newoapp1App.miembrosGrupo.grupos">Grupos</span></dt>
+                <dd>
+                    <div *ngIf="miembrosGrupo.grupos">
+                        <a [routerLink]="['/grupos', miembrosGrupo.grupos?.id, 'view']">{{miembrosGrupo.grupos?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.miembrosGrupo.miembros">Miembros</span></dt>
+                <dd>
+                    <div *ngIf="miembrosGrupo.miembros">
+                        <a [routerLink]="['/miembros', miembrosGrupo.miembros?.id, 'view']">{{miembrosGrupo.miembros?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/miembros-grupo', miembrosGrupo.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

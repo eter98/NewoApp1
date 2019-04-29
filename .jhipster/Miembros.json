@@ -1,0 +1,146 @@
+{
+    "name": "Miembros",
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "apellido",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nacionalidad",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fechaNacimiento",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "fechaRegistro",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "genero",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "correoElectronico",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "celular",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "idEquipoEmprearial",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "idSede",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "derechosDeCompra",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tipoAcceso",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "espacioLibre",
+            "otherEntityRelationshipName": "miembros",
+            "relationshipName": "espacioLibre",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "hostSede",
+            "otherEntityRelationshipName": "miembros",
+            "relationshipName": "hostSede",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "beneficio",
+            "otherEntityRelationshipName": "miembros",
+            "relationshipName": "beneficio",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "invitados",
+            "otherEntityRelationshipName": "miembros",
+            "relationshipName": "invitados"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "blog",
+            "otherEntityRelationshipName": "miembros",
+            "relationshipName": "blog"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "evento",
+            "otherEntityRelationshipName": "miembros",
+            "relationshipName": "evento"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "reservas",
+            "otherEntityRelationshipName": "miembros",
+            "relationshipName": "reservas"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "miembrosGrupo",
+            "otherEntityRelationshipName": "miembros",
+            "relationshipName": "miembrosGrupo"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "perfilMiembro",
+            "otherEntityRelationshipName": "miembros",
+            "relationshipName": "perfilMiembro",
+            "ownerSide": false
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "registroCompra",
+            "otherEntityRelationshipName": "miembros",
+            "relationshipName": "registroCompra",
+            "ownerSide": false
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "entradaMiembros",
+            "otherEntityRelationshipName": "miembros",
+            "relationshipName": "entradaMiembros",
+            "ownerSide": false
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "miembrosEquipoEmpresas",
+            "otherEntityRelationshipName": "miembros",
+            "relationshipName": "miembrosEquipoEmpresas",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20190429153742",
+    "entityTableName": "miembros",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

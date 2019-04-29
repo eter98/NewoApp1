@@ -1,0 +1,102 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="blog">
+            <h2><span jhiTranslate="newoapp1App.blog.detail.title">Blog</span> {{blog.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="newoapp1App.blog.tipoContenido">Tipo Contenido</span></dt>
+                <dd>
+                    <span>{{blog.tipoContenido}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.blog.descripcion">Descripcion</span></dt>
+                <dd>
+                    <span>{{blog.descripcion}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.blog.contenidos">Contenidos</span></dt>
+                <dd>
+                    <span>{{blog.contenidos}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.blog.audio">Audio</span></dt>
+                <dd>
+                    <div *ngIf="blog.audio">
+                        <a (click)="openFile(blog.audioContentType, blog.audio)" jhiTranslate="entity.action.open">open</a>
+                        {{blog.audioContentType}}, {{byteSize(blog.audio)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.blog.video">Video</span></dt>
+                <dd>
+                    <div *ngIf="blog.video">
+                        <a (click)="openFile(blog.videoContentType, blog.video)" jhiTranslate="entity.action.open">open</a>
+                        {{blog.videoContentType}}, {{byteSize(blog.video)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.blog.foto1">Foto 1</span></dt>
+                <dd>
+                    <div *ngIf="blog.foto1">
+                        <a (click)="openFile(blog.foto1ContentType, blog.foto1)">
+                            <img [src]="'data:' + blog.foto1ContentType + ';base64,' + blog.foto1" style="max-width: 100%;" alt="blog image"/>
+                        </a>
+                        {{blog.foto1ContentType}}, {{byteSize(blog.foto1)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.blog.foto2">Foto 2</span></dt>
+                <dd>
+                    <div *ngIf="blog.foto2">
+                        <a (click)="openFile(blog.foto2ContentType, blog.foto2)">
+                            <img [src]="'data:' + blog.foto2ContentType + ';base64,' + blog.foto2" style="max-width: 100%;" alt="blog image"/>
+                        </a>
+                        {{blog.foto2ContentType}}, {{byteSize(blog.foto2)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.blog.banner">Banner</span></dt>
+                <dd>
+                    <div *ngIf="blog.banner">
+                        <a (click)="openFile(blog.bannerContentType, blog.banner)">
+                            <img [src]="'data:' + blog.bannerContentType + ';base64,' + blog.banner" style="max-width: 100%;" alt="blog image"/>
+                        </a>
+                        {{blog.bannerContentType}}, {{byteSize(blog.banner)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.blog.tipoConsumo">Tipo Consumo</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'newoapp1App.TipoConsumod.' + blog.tipoConsumo}}">{{blog.tipoConsumo}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.blog.valor">Valor</span></dt>
+                <dd>
+                    <span>{{blog.valor}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.blog.impuesto">Impuesto</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'newoapp1App.Impuestod.' + blog.impuesto}}">{{blog.impuesto}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.blog.categoria">Categoria</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'newoapp1App.Categoriad.' + blog.categoria}}">{{blog.categoria}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.blog.estadoPublicacion">Estado Publicacion</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'newoapp1App.EstadoPublicaciond.' + blog.estadoPublicacion}}">{{blog.estadoPublicacion}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.blog.miembros">Miembros</span></dt>
+                <dd>
+                    <div *ngIf="blog.miembros">
+                        <a [routerLink]="['/miembros', blog.miembros?.id, 'view']">{{blog.miembros?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/blog', blog.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

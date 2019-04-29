@@ -1,0 +1,65 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-facturacion-heading" jhiTranslate="newoapp1App.facturacion.home.createOrEditLabel">Create or edit a Facturacion</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!facturacion.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="facturacion.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.facturacion.titularFactura" for="field_titularFactura">Titular Factura</label>
+                    <input type="text" class="form-control" name="titularFactura" id="field_titularFactura"
+                        [(ngModel)]="facturacion.titularFactura" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.facturacion.tipoPersona" for="field_tipoPersona">Tipo Persona</label>
+                    <select class="form-control" name="tipoPersona" [(ngModel)]="facturacion.tipoPersona" id="field_tipoPersona" >
+                        <option value="INATURAL">{{'newoapp1App.TipoPersonad.INATURAL' | translate}}</option>
+                        <option value="JURIDICA">{{'newoapp1App.TipoPersonad.JURIDICA' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.facturacion.periodicidadFacturacion" for="field_periodicidadFacturacion">Periodicidad Facturacion</label>
+                    <select class="form-control" name="periodicidadFacturacion" [(ngModel)]="facturacion.periodicidadFacturacion" id="field_periodicidadFacturacion" >
+                        <option value="SEMANAL">{{'newoapp1App.PeriodicidadFacturaciond.SEMANAL' | translate}}</option>
+                        <option value="QUINCENAL">{{'newoapp1App.PeriodicidadFacturaciond.QUINCENAL' | translate}}</option>
+                        <option value="MENSUAL">{{'newoapp1App.PeriodicidadFacturaciond.MENSUAL' | translate}}</option>
+                        <option value="BIMESTRAL">{{'newoapp1App.PeriodicidadFacturaciond.BIMESTRAL' | translate}}</option>
+                        <option value="TRIMESTRAL">{{'newoapp1App.PeriodicidadFacturaciond.TRIMESTRAL' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.facturacion.maximoMonto" for="field_maximoMonto">Maximo Monto</label>
+                    <input type="number" class="form-control" name="maximoMonto" id="field_maximoMonto"
+                        [(ngModel)]="facturacion.maximoMonto" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.facturacion.empresa" for="field_empresa">Empresa</label>
+                    <select class="form-control" id="field_empresa" name="empresa" [(ngModel)]="facturacion.empresa">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="empresaOption.id === facturacion.empresa?.id ? facturacion.empresa : empresaOption" *ngFor="let empresaOption of empresas; trackBy: trackEmpresaById">{{empresaOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.facturacion.cuentaAsociada" for="field_cuentaAsociada">Cuenta Asociada</label>
+                    <select class="form-control" id="field_cuentaAsociada" name="cuentaAsociada" [(ngModel)]="facturacion.cuentaAsociada">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="cuentaAsociadaOption.id === facturacion.cuentaAsociada?.id ? facturacion.cuentaAsociada : cuentaAsociadaOption" *ngFor="let cuentaAsociadaOption of cuentaasociadas; trackBy: trackCuentaAsociadaById">{{cuentaAsociadaOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

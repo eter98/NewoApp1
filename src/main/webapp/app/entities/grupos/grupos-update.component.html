@@ -1,0 +1,179 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-grupos-heading" jhiTranslate="newoapp1App.grupos.home.createOrEditLabel">Create or edit a Grupos</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!grupos.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="grupos.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.grupos.nombreGrupo" for="field_nombreGrupo">Nombre Grupo</label>
+                    <input type="text" class="form-control" name="nombreGrupo" id="field_nombreGrupo"
+                        [(ngModel)]="grupos.nombreGrupo" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.grupos.instagram" for="field_instagram">Instagram</label>
+                    <input type="text" class="form-control" name="instagram" id="field_instagram"
+                        [(ngModel)]="grupos.instagram" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.grupos.facebook" for="field_facebook">Facebook</label>
+                    <input type="text" class="form-control" name="facebook" id="field_facebook"
+                        [(ngModel)]="grupos.facebook" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.grupos.twiter" for="field_twiter">Twiter</label>
+                    <input type="text" class="form-control" name="twiter" id="field_twiter"
+                        [(ngModel)]="grupos.twiter" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.grupos.linkedIn" for="field_linkedIn">Linked In</label>
+                    <input type="text" class="form-control" name="linkedIn" id="field_linkedIn"
+                        [(ngModel)]="grupos.linkedIn" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.grupos.tipoGrupo" for="field_tipoGrupo">Tipo Grupo</label>
+                    <select class="form-control" name="tipoGrupo" [(ngModel)]="grupos.tipoGrupo" id="field_tipoGrupo" >
+                        <option value="INTERNO">{{'newoapp1App.TipoGrupod.INTERNO' | translate}}</option>
+                        <option value="EXTERNO">{{'newoapp1App.TipoGrupod.EXTERNO' | translate}}</option>
+                        <option value="PATROCINADO">{{'newoapp1App.TipoGrupod.PATROCINADO' | translate}}</option>
+                        <option value="PUBLICO">{{'newoapp1App.TipoGrupod.PUBLICO' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.grupos.categoria" for="field_categoria">Categoria</label>
+                    <select class="form-control" name="categoria" [(ngModel)]="grupos.categoria" id="field_categoria" >
+                        <option value="GENERAL">{{'newoapp1App.Categoriad.GENERAL' | translate}}</option>
+                        <option value="DE_GRUPO">{{'newoapp1App.Categoriad.DE_GRUPO' | translate}}</option>
+                        <option value="CORPORATIVO">{{'newoapp1App.Categoriad.CORPORATIVO' | translate}}</option>
+                        <option value="INSTITUCIONAL">{{'newoapp1App.Categoriad.INSTITUCIONAL' | translate}}</option>
+                        <option value="INTERNO">{{'newoapp1App.Categoriad.INTERNO' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.grupos.tipoConsumo" for="field_tipoConsumo">Tipo Consumo</label>
+                    <select class="form-control" name="tipoConsumo" [(ngModel)]="grupos.tipoConsumo" id="field_tipoConsumo" >
+                        <option value="GRATIS">{{'newoapp1App.TipoConsumod.GRATIS' | translate}}</option>
+                        <option value="PAGO">{{'newoapp1App.TipoConsumod.PAGO' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.grupos.valorSuscripcion" for="field_valorSuscripcion">Valor Suscripcion</label>
+                    <input type="number" class="form-control" name="valorSuscripcion" id="field_valorSuscripcion"
+                        [(ngModel)]="grupos.valorSuscripcion" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.grupos.reglasGrupo" for="field_reglasGrupo">Reglas Grupo</label>
+                    <textarea class="form-control" name="reglasGrupo" id="field_reglasGrupo"
+                        [(ngModel)]="grupos.reglasGrupo" ></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.grupos.audio" for="field_audio">Audio</label>
+                    <div>
+                        <div *ngIf="grupos.audio" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(grupos.audioContentType, grupos.audio)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{grupos.audioContentType}}, {{byteSize(grupos.audio)}}</span>
+                            <button type="button" (click)="grupos.audio=null;grupos.audioContentType=null;"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_audio" (change)="setFileData($event, grupos, 'audio', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="audio" id="field_audio"
+                        [(ngModel)]="grupos.audio" />
+                    <input type="hidden" class="form-control" name="audioContentType" id="field_audioContentType"
+                        [(ngModel)]="grupos.audioContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.grupos.video" for="field_video">Video</label>
+                    <div>
+                        <div *ngIf="grupos.video" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(grupos.videoContentType, grupos.video)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{grupos.videoContentType}}, {{byteSize(grupos.video)}}</span>
+                            <button type="button" (click)="grupos.video=null;grupos.videoContentType=null;"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_video" (change)="setFileData($event, grupos, 'video', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="video" id="field_video"
+                        [(ngModel)]="grupos.video" />
+                    <input type="hidden" class="form-control" name="videoContentType" id="field_videoContentType"
+                        [(ngModel)]="grupos.videoContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.grupos.foto1" for="field_foto1">Foto 1</label>
+                    <div>
+                        <img [src]="'data:' + grupos.foto1ContentType + ';base64,' + grupos.foto1" style="max-height: 100px;" *ngIf="grupos.foto1" alt="grupos image"/>
+                        <div *ngIf="grupos.foto1" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{grupos.foto1ContentType}}, {{byteSize(grupos.foto1)}}</span>
+                            <button type="button" (click)="clearInputImage('foto1', 'foto1ContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_foto1" (change)="setFileData($event, grupos, 'foto1', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="foto1" id="field_foto1"
+                        [(ngModel)]="grupos.foto1" />
+                    <input type="hidden" class="form-control" name="foto1ContentType" id="field_foto1ContentType"
+                        [(ngModel)]="grupos.foto1ContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.grupos.foto2" for="field_foto2">Foto 2</label>
+                    <div>
+                        <img [src]="'data:' + grupos.foto2ContentType + ';base64,' + grupos.foto2" style="max-height: 100px;" *ngIf="grupos.foto2" alt="grupos image"/>
+                        <div *ngIf="grupos.foto2" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{grupos.foto2ContentType}}, {{byteSize(grupos.foto2)}}</span>
+                            <button type="button" (click)="clearInputImage('foto2', 'foto2ContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_foto2" (change)="setFileData($event, grupos, 'foto2', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="foto2" id="field_foto2"
+                        [(ngModel)]="grupos.foto2" />
+                    <input type="hidden" class="form-control" name="foto2ContentType" id="field_foto2ContentType"
+                        [(ngModel)]="grupos.foto2ContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.grupos.banner" for="field_banner">Banner</label>
+                    <div>
+                        <img [src]="'data:' + grupos.bannerContentType + ';base64,' + grupos.banner" style="max-height: 100px;" *ngIf="grupos.banner" alt="grupos image"/>
+                        <div *ngIf="grupos.banner" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{grupos.bannerContentType}}, {{byteSize(grupos.banner)}}</span>
+                            <button type="button" (click)="clearInputImage('banner', 'bannerContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_banner" (change)="setFileData($event, grupos, 'banner', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="banner" id="field_banner"
+                        [(ngModel)]="grupos.banner" />
+                    <input type="hidden" class="form-control" name="bannerContentType" id="field_bannerContentType"
+                        [(ngModel)]="grupos.bannerContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.grupos.evento" for="field_evento">Evento</label>
+                    <select class="form-control" id="field_evento" name="evento" [(ngModel)]="grupos.evento" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="eventoOption.id === grupos.evento?.id ? grupos.evento : eventoOption" *ngFor="let eventoOption of eventos; trackBy: trackEventoById">{{eventoOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

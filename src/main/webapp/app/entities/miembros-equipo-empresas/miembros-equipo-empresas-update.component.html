@@ -1,0 +1,38 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-miembros-equipo-empresas-heading" jhiTranslate="newoapp1App.miembrosEquipoEmpresas.home.createOrEditLabel">Create or edit a Miembros Equipo Empresas</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!miembrosEquipoEmpresas.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="miembrosEquipoEmpresas.id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.miembrosEquipoEmpresas.equipoEmpresas" for="field_equipoEmpresas">Equipo Empresas</label>
+                    <select class="form-control" id="field_equipoEmpresas" name="equipoEmpresas" [(ngModel)]="miembrosEquipoEmpresas.equipoEmpresas">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="equipoEmpresasOption.id === miembrosEquipoEmpresas.equipoEmpresas?.id ? miembrosEquipoEmpresas.equipoEmpresas : equipoEmpresasOption" *ngFor="let equipoEmpresasOption of equipoempresas; trackBy: trackEquipoEmpresasById">{{equipoEmpresasOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.miembrosEquipoEmpresas.miembros" for="field_miembros">Miembros</label>
+                    <select class="form-control" id="field_miembros" name="miembros" [(ngModel)]="miembrosEquipoEmpresas.miembros">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="miembrosOption.id === miembrosEquipoEmpresas.miembros?.id ? miembrosEquipoEmpresas.miembros : miembrosOption" *ngFor="let miembrosOption of miembros; trackBy: trackMiembrosById">{{miembrosOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
