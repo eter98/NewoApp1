@@ -1,0 +1,94 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="newoapp1App.miembros.home.title">Miembros</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-miembros" [routerLink]="['/miembros/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="newoapp1App.miembros.home.createLabel">
+            Create new Miembros
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="miembros">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="newoapp1App.miembros.nombre">Nombre</span></th>
+            <th><span jhiTranslate="newoapp1App.miembros.apellido">Apellido</span></th>
+            <th><span jhiTranslate="newoapp1App.miembros.nacionalidad">Nacionalidad</span></th>
+            <th><span jhiTranslate="newoapp1App.miembros.fechaNacimiento">Fecha Nacimiento</span></th>
+            <th><span jhiTranslate="newoapp1App.miembros.fechaRegistro">Fecha Registro</span></th>
+            <th><span jhiTranslate="newoapp1App.miembros.genero">Genero</span></th>
+            <th><span jhiTranslate="newoapp1App.miembros.correoElectronico">Correo Electronico</span></th>
+            <th><span jhiTranslate="newoapp1App.miembros.celular">Celular</span></th>
+            <th><span jhiTranslate="newoapp1App.miembros.idEquipoEmprearial">Id Equipo Emprearial</span></th>
+            <th><span jhiTranslate="newoapp1App.miembros.idSede">Id Sede</span></th>
+            <th><span jhiTranslate="newoapp1App.miembros.derechosDeCompra">Derechos De Compra</span></th>
+            <th><span jhiTranslate="newoapp1App.miembros.tipoAcceso">Tipo Acceso</span></th>
+            <th><span jhiTranslate="newoapp1App.miembros.espacioLibre">Espacio Libre</span></th>
+            <th><span jhiTranslate="newoapp1App.miembros.hostSede">Host Sede</span></th>
+            <th><span jhiTranslate="newoapp1App.miembros.beneficio">Beneficio</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let miembros of miembros ;trackBy: trackId">
+                <td><a [routerLink]="['/miembros', miembros.id, 'view' ]">{{miembros.id}}</a></td>
+                <td>{{miembros.nombre}}</td>
+                <td>{{miembros.apellido}}</td>
+                <td>{{miembros.nacionalidad}}</td>
+                <td>{{miembros.fechaNacimiento | date:'mediumDate'}}</td>
+                <td>{{miembros.fechaRegistro | date:'mediumDate'}}</td>
+                <td>{{miembros.genero}}</td>
+                <td>{{miembros.correoElectronico}}</td>
+                <td>{{miembros.celular}}</td>
+                <td>{{miembros.idEquipoEmprearial}}</td>
+                <td>{{miembros.idSede}}</td>
+                <td>{{miembros.derechosDeCompra}}</td>
+                <td>{{miembros.tipoAcceso}}</td>
+                <td>
+                    <div *ngIf="miembros.espacioLibre">
+                        <a [routerLink]="['../espacio-libre', miembros.espacioLibre?.id, 'view' ]" >{{miembros.espacioLibre?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="miembros.hostSede">
+                        <a [routerLink]="['../host-sede', miembros.hostSede?.id, 'view' ]" >{{miembros.hostSede?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="miembros.beneficio">
+                        <a [routerLink]="['../beneficio', miembros.beneficio?.id, 'view' ]" >{{miembros.beneficio?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/miembros', miembros.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/miembros', miembros.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'miembros', { outlets: { popup: miembros.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

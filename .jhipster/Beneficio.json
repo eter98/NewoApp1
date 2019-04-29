@@ -1,0 +1,31 @@
+{
+    "name": "Beneficio",
+    "fields": [
+        {
+            "fieldName": "tipoBeneficio",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "descuento",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "miembros",
+            "otherEntityRelationshipName": "beneficio",
+            "relationshipName": "miembros",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20190429153757",
+    "entityTableName": "beneficio",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

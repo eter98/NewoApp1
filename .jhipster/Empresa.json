@@ -1,0 +1,54 @@
+{
+    "name": "Empresa",
+    "fields": [
+        {
+            "fieldName": "razonSocial",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nit",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "direccion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "telefono",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "correo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "celular",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "facturacion",
+            "otherEntityRelationshipName": "empresa",
+            "relationshipName": "facturacion",
+            "ownerSide": false
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "perfilEquipoEmpresa",
+            "otherEntityRelationshipName": "empresa",
+            "relationshipName": "perfilEquipoEmpresa",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20190429153759",
+    "entityTableName": "empresa",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

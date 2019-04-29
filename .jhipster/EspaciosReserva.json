@@ -1,0 +1,109 @@
+{
+    "name": "EspaciosReserva",
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "facilidades",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "capacidad",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "apertura",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cierre",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tarifa1Hora",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tarifa2Hora",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tarifa3Hora",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tarifa4Hora",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tarifa5Hora",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tarifa6Hora",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tarifa7Hora",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tarifa8Hora",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "estadoReserva",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "wifi",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "sedes",
+            "otherEntityRelationshipName": "espaciosReserva",
+            "relationshipName": "sedes",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "reservas",
+            "otherEntityRelationshipName": "espaciosReserva",
+            "relationshipName": "reservas",
+            "ownerSide": false
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "entradaMiembros",
+            "otherEntityRelationshipName": "espaciosReserva",
+            "relationshipName": "entradaMiembros",
+            "ownerSide": false
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "entradaInvitados",
+            "otherEntityRelationshipName": "espaciosReserva",
+            "relationshipName": "entradaInvitados",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20190429153751",
+    "entityTableName": "espacios_reserva",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

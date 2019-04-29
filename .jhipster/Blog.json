@@ -1,0 +1,85 @@
+{
+    "name": "Blog",
+    "fields": [
+        {
+            "fieldName": "tipoContenido",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "contenidos",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "audio",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        },
+        {
+            "fieldName": "video",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        },
+        {
+            "fieldName": "foto1",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "foto2",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "banner",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "tipoConsumo",
+            "fieldType": "TipoConsumod",
+            "fieldValues": "GRATIS,PAGO"
+        },
+        {
+            "fieldName": "valor",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "impuesto",
+            "fieldType": "Impuestod",
+            "fieldValues": "IVA19,IVA6,IVA0,ICO,IPOCONSUMO8"
+        },
+        {
+            "fieldName": "categoria",
+            "fieldType": "Categoriad",
+            "fieldValues": "GENERAL,DE_GRUPO,CORPORATIVO,INSTITUCIONAL,INTERNO"
+        },
+        {
+            "fieldName": "estadoPublicacion",
+            "fieldType": "EstadoPublicaciond",
+            "fieldValues": "BORRADOR,EN_REVISION,APROBADO,PUBLICADO,RECHAZADO"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "miembros",
+            "otherEntityRelationshipName": "blog",
+            "relationshipName": "miembros",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190429153804",
+    "entityTableName": "blog",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

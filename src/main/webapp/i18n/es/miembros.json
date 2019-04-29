@@ -1,0 +1,44 @@
+{
+    "newoapp1App": {
+        "miembros": {
+            "home": {
+                "title": "Miembros",
+                "createLabel": "Crear nuevo Miembros",
+                "createOrEditLabel": "Crear o editar Miembros"
+            },
+            "created": "Un nuevo Miembros ha sido creado con el identificador {{ param }}",
+            "updated": "Un Miembros ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Miembros ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Miembros {{ id }}?"
+            },
+            "detail": {
+                "title": "Miembros"
+            },
+            "nombre": "Nombre",
+            "apellido": "Apellido",
+            "nacionalidad": "Nacionalidad",
+            "fechaNacimiento": "Fecha Nacimiento",
+            "fechaRegistro": "Fecha Registro",
+            "genero": "Genero",
+            "correoElectronico": "Correo Electronico",
+            "celular": "Celular",
+            "idEquipoEmprearial": "Id Equipo Emprearial",
+            "idSede": "Id Sede",
+            "derechosDeCompra": "Derechos De Compra",
+            "tipoAcceso": "Tipo Acceso",
+            "espacioLibre": "Espacio Libre",
+            "hostSede": "Host Sede",
+            "beneficio": "Beneficio",
+            "invitados": "Invitados",
+            "blog": "Blog",
+            "evento": "Evento",
+            "reservas": "Reservas",
+            "miembrosGrupo": "Miembros Grupo",
+            "perfilMiembro": "Perfil Miembro",
+            "registroCompra": "Registro Compra",
+            "entradaMiembros": "Entrada Miembros",
+            "miembrosEquipoEmpresas": "Miembros Equipo Empresas"
+        }
+    }
+}

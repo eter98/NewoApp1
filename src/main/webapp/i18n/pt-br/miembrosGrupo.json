@@ -1,0 +1,22 @@
+{
+    "newoapp1App": {
+        "miembrosGrupo": {
+            "home": {
+                "title": "Miembros Grupos",
+                "createLabel": "Criar novo Miembros Grupo",
+                "createOrEditLabel": "Criar ou editar Miembros Grupo"
+            },
+            "created": "Um novo Miembros Grupo foi criado com o identificador {{ param }}",
+            "updated": "Um Miembros Grupo foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Miembros Grupo foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Miembros Grupo {{ id }}?"
+            },
+            "detail": {
+                "title": "Miembros Grupo"
+            },
+            "grupos": "Grupos",
+            "miembros": "Miembros"
+        }
+    }
+}

@@ -1,0 +1,64 @@
+{
+    "name": "EntradaMiembros",
+    "fields": [
+        {
+            "fieldName": "fechaEntrada",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "horaEntrada",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tipoEntrada",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tiempoMaximo",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "sedes",
+            "otherEntityRelationshipName": "entradaMiembros",
+            "relationshipName": "sedes",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "miembros",
+            "otherEntityRelationshipName": "entradaMiembros",
+            "relationshipName": "miembros",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "espacioLibre",
+            "otherEntityRelationshipName": "entradaMiembros",
+            "relationshipName": "espacioLibre",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "espaciosReserva",
+            "otherEntityRelationshipName": "entradaMiembros",
+            "relationshipName": "espaciosReserva",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20190429153744",
+    "entityTableName": "entrada_miembros",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

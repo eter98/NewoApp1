@@ -1,0 +1,64 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="newoapp1App.miembrosGrupo.home.title">Miembros Grupos</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-miembros-grupo" [routerLink]="['/miembros-grupo/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="newoapp1App.miembrosGrupo.home.createLabel">
+            Create new Miembros Grupo
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="miembrosGrupos">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="newoapp1App.miembrosGrupo.grupos">Grupos</span></th>
+            <th><span jhiTranslate="newoapp1App.miembrosGrupo.miembros">Miembros</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let miembrosGrupo of miembrosGrupos ;trackBy: trackId">
+                <td><a [routerLink]="['/miembros-grupo', miembrosGrupo.id, 'view' ]">{{miembrosGrupo.id}}</a></td>
+                <td>
+                    <div *ngIf="miembrosGrupo.grupos">
+                        <a [routerLink]="['../grupos', miembrosGrupo.grupos?.id, 'view' ]" >{{miembrosGrupo.grupos?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="miembrosGrupo.miembros">
+                        <a [routerLink]="['../miembros', miembrosGrupo.miembros?.id, 'view' ]" >{{miembrosGrupo.miembros?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/miembros-grupo', miembrosGrupo.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/miembros-grupo', miembrosGrupo.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'miembros-grupo', { outlets: { popup: miembrosGrupo.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

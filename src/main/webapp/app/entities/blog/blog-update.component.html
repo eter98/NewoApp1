@@ -1,0 +1,175 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-blog-heading" jhiTranslate="newoapp1App.blog.home.createOrEditLabel">Create or edit a Blog</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!blog.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="blog.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.blog.tipoContenido" for="field_tipoContenido">Tipo Contenido</label>
+                    <input type="number" class="form-control" name="tipoContenido" id="field_tipoContenido"
+                        [(ngModel)]="blog.tipoContenido" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.blog.descripcion" for="field_descripcion">Descripcion</label>
+                    <input type="text" class="form-control" name="descripcion" id="field_descripcion"
+                        [(ngModel)]="blog.descripcion" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.blog.contenidos" for="field_contenidos">Contenidos</label>
+                    <textarea class="form-control" name="contenidos" id="field_contenidos"
+                        [(ngModel)]="blog.contenidos" ></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.blog.audio" for="field_audio">Audio</label>
+                    <div>
+                        <div *ngIf="blog.audio" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(blog.audioContentType, blog.audio)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{blog.audioContentType}}, {{byteSize(blog.audio)}}</span>
+                            <button type="button" (click)="blog.audio=null;blog.audioContentType=null;"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_audio" (change)="setFileData($event, blog, 'audio', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="audio" id="field_audio"
+                        [(ngModel)]="blog.audio" />
+                    <input type="hidden" class="form-control" name="audioContentType" id="field_audioContentType"
+                        [(ngModel)]="blog.audioContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.blog.video" for="field_video">Video</label>
+                    <div>
+                        <div *ngIf="blog.video" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(blog.videoContentType, blog.video)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{blog.videoContentType}}, {{byteSize(blog.video)}}</span>
+                            <button type="button" (click)="blog.video=null;blog.videoContentType=null;"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_video" (change)="setFileData($event, blog, 'video', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="video" id="field_video"
+                        [(ngModel)]="blog.video" />
+                    <input type="hidden" class="form-control" name="videoContentType" id="field_videoContentType"
+                        [(ngModel)]="blog.videoContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.blog.foto1" for="field_foto1">Foto 1</label>
+                    <div>
+                        <img [src]="'data:' + blog.foto1ContentType + ';base64,' + blog.foto1" style="max-height: 100px;" *ngIf="blog.foto1" alt="blog image"/>
+                        <div *ngIf="blog.foto1" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{blog.foto1ContentType}}, {{byteSize(blog.foto1)}}</span>
+                            <button type="button" (click)="clearInputImage('foto1', 'foto1ContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_foto1" (change)="setFileData($event, blog, 'foto1', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="foto1" id="field_foto1"
+                        [(ngModel)]="blog.foto1" />
+                    <input type="hidden" class="form-control" name="foto1ContentType" id="field_foto1ContentType"
+                        [(ngModel)]="blog.foto1ContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.blog.foto2" for="field_foto2">Foto 2</label>
+                    <div>
+                        <img [src]="'data:' + blog.foto2ContentType + ';base64,' + blog.foto2" style="max-height: 100px;" *ngIf="blog.foto2" alt="blog image"/>
+                        <div *ngIf="blog.foto2" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{blog.foto2ContentType}}, {{byteSize(blog.foto2)}}</span>
+                            <button type="button" (click)="clearInputImage('foto2', 'foto2ContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_foto2" (change)="setFileData($event, blog, 'foto2', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="foto2" id="field_foto2"
+                        [(ngModel)]="blog.foto2" />
+                    <input type="hidden" class="form-control" name="foto2ContentType" id="field_foto2ContentType"
+                        [(ngModel)]="blog.foto2ContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.blog.banner" for="field_banner">Banner</label>
+                    <div>
+                        <img [src]="'data:' + blog.bannerContentType + ';base64,' + blog.banner" style="max-height: 100px;" *ngIf="blog.banner" alt="blog image"/>
+                        <div *ngIf="blog.banner" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{blog.bannerContentType}}, {{byteSize(blog.banner)}}</span>
+                            <button type="button" (click)="clearInputImage('banner', 'bannerContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_banner" (change)="setFileData($event, blog, 'banner', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="banner" id="field_banner"
+                        [(ngModel)]="blog.banner" />
+                    <input type="hidden" class="form-control" name="bannerContentType" id="field_bannerContentType"
+                        [(ngModel)]="blog.bannerContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.blog.tipoConsumo" for="field_tipoConsumo">Tipo Consumo</label>
+                    <select class="form-control" name="tipoConsumo" [(ngModel)]="blog.tipoConsumo" id="field_tipoConsumo" >
+                        <option value="GRATIS">{{'newoapp1App.TipoConsumod.GRATIS' | translate}}</option>
+                        <option value="PAGO">{{'newoapp1App.TipoConsumod.PAGO' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.blog.valor" for="field_valor">Valor</label>
+                    <input type="number" class="form-control" name="valor" id="field_valor"
+                        [(ngModel)]="blog.valor" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.blog.impuesto" for="field_impuesto">Impuesto</label>
+                    <select class="form-control" name="impuesto" [(ngModel)]="blog.impuesto" id="field_impuesto" >
+                        <option value="IVA19">{{'newoapp1App.Impuestod.IVA19' | translate}}</option>
+                        <option value="IVA6">{{'newoapp1App.Impuestod.IVA6' | translate}}</option>
+                        <option value="IVA0">{{'newoapp1App.Impuestod.IVA0' | translate}}</option>
+                        <option value="ICO">{{'newoapp1App.Impuestod.ICO' | translate}}</option>
+                        <option value="IPOCONSUMO8">{{'newoapp1App.Impuestod.IPOCONSUMO8' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.blog.categoria" for="field_categoria">Categoria</label>
+                    <select class="form-control" name="categoria" [(ngModel)]="blog.categoria" id="field_categoria" >
+                        <option value="GENERAL">{{'newoapp1App.Categoriad.GENERAL' | translate}}</option>
+                        <option value="DE_GRUPO">{{'newoapp1App.Categoriad.DE_GRUPO' | translate}}</option>
+                        <option value="CORPORATIVO">{{'newoapp1App.Categoriad.CORPORATIVO' | translate}}</option>
+                        <option value="INSTITUCIONAL">{{'newoapp1App.Categoriad.INSTITUCIONAL' | translate}}</option>
+                        <option value="INTERNO">{{'newoapp1App.Categoriad.INTERNO' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.blog.estadoPublicacion" for="field_estadoPublicacion">Estado Publicacion</label>
+                    <select class="form-control" name="estadoPublicacion" [(ngModel)]="blog.estadoPublicacion" id="field_estadoPublicacion" >
+                        <option value="BORRADOR">{{'newoapp1App.EstadoPublicaciond.BORRADOR' | translate}}</option>
+                        <option value="EN_REVISION">{{'newoapp1App.EstadoPublicaciond.EN_REVISION' | translate}}</option>
+                        <option value="APROBADO">{{'newoapp1App.EstadoPublicaciond.APROBADO' | translate}}</option>
+                        <option value="PUBLICADO">{{'newoapp1App.EstadoPublicaciond.PUBLICADO' | translate}}</option>
+                        <option value="RECHAZADO">{{'newoapp1App.EstadoPublicaciond.RECHAZADO' | translate}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.blog.miembros" for="field_miembros">Miembros</label>
+                    <select class="form-control" id="field_miembros" name="miembros" [(ngModel)]="blog.miembros" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="miembrosOption.id === blog.miembros?.id ? blog.miembros : miembrosOption" *ngFor="let miembrosOption of miembros; trackBy: trackMiembrosById">{{miembrosOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

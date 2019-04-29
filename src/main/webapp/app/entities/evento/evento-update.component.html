@@ -1,0 +1,165 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-evento-heading" jhiTranslate="newoapp1App.evento.home.createOrEditLabel">Create or edit a Evento</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!evento.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="evento.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.evento.nombreEvento" for="field_nombreEvento">Nombre Evento</label>
+                    <input type="number" class="form-control" name="nombreEvento" id="field_nombreEvento"
+                        [(ngModel)]="evento.nombreEvento" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.evento.descripcion" for="field_descripcion">Descripcion</label>
+                    <textarea class="form-control" name="descripcion" id="field_descripcion"
+                        [(ngModel)]="evento.descripcion" ></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.evento.audio" for="field_audio">Audio</label>
+                    <div>
+                        <div *ngIf="evento.audio" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(evento.audioContentType, evento.audio)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{evento.audioContentType}}, {{byteSize(evento.audio)}}</span>
+                            <button type="button" (click)="evento.audio=null;evento.audioContentType=null;"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_audio" (change)="setFileData($event, evento, 'audio', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="audio" id="field_audio"
+                        [(ngModel)]="evento.audio" />
+                    <input type="hidden" class="form-control" name="audioContentType" id="field_audioContentType"
+                        [(ngModel)]="evento.audioContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.evento.video" for="field_video">Video</label>
+                    <div>
+                        <div *ngIf="evento.video" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(evento.videoContentType, evento.video)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{evento.videoContentType}}, {{byteSize(evento.video)}}</span>
+                            <button type="button" (click)="evento.video=null;evento.videoContentType=null;"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_video" (change)="setFileData($event, evento, 'video', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="video" id="field_video"
+                        [(ngModel)]="evento.video" />
+                    <input type="hidden" class="form-control" name="videoContentType" id="field_videoContentType"
+                        [(ngModel)]="evento.videoContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.evento.foto1" for="field_foto1">Foto 1</label>
+                    <div>
+                        <img [src]="'data:' + evento.foto1ContentType + ';base64,' + evento.foto1" style="max-height: 100px;" *ngIf="evento.foto1" alt="evento image"/>
+                        <div *ngIf="evento.foto1" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{evento.foto1ContentType}}, {{byteSize(evento.foto1)}}</span>
+                            <button type="button" (click)="clearInputImage('foto1', 'foto1ContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_foto1" (change)="setFileData($event, evento, 'foto1', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="foto1" id="field_foto1"
+                        [(ngModel)]="evento.foto1" />
+                    <input type="hidden" class="form-control" name="foto1ContentType" id="field_foto1ContentType"
+                        [(ngModel)]="evento.foto1ContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.evento.foto2" for="field_foto2">Foto 2</label>
+                    <div>
+                        <img [src]="'data:' + evento.foto2ContentType + ';base64,' + evento.foto2" style="max-height: 100px;" *ngIf="evento.foto2" alt="evento image"/>
+                        <div *ngIf="evento.foto2" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{evento.foto2ContentType}}, {{byteSize(evento.foto2)}}</span>
+                            <button type="button" (click)="clearInputImage('foto2', 'foto2ContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_foto2" (change)="setFileData($event, evento, 'foto2', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="foto2" id="field_foto2"
+                        [(ngModel)]="evento.foto2" />
+                    <input type="hidden" class="form-control" name="foto2ContentType" id="field_foto2ContentType"
+                        [(ngModel)]="evento.foto2ContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.evento.banner" for="field_banner">Banner</label>
+                    <div>
+                        <img [src]="'data:' + evento.bannerContentType + ';base64,' + evento.banner" style="max-height: 100px;" *ngIf="evento.banner" alt="evento image"/>
+                        <div *ngIf="evento.banner" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{evento.bannerContentType}}, {{byteSize(evento.banner)}}</span>
+                            <button type="button" (click)="clearInputImage('banner', 'bannerContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_banner" (change)="setFileData($event, evento, 'banner', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="banner" id="field_banner"
+                        [(ngModel)]="evento.banner" />
+                    <input type="hidden" class="form-control" name="bannerContentType" id="field_bannerContentType"
+                        [(ngModel)]="evento.bannerContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.evento.tipoConsumo" for="field_tipoConsumo">Tipo Consumo</label>
+                    <select class="form-control" name="tipoConsumo" [(ngModel)]="evento.tipoConsumo" id="field_tipoConsumo" >
+                        <option value="GRATIS">{{'newoapp1App.TipoConsumod.GRATIS' | translate}}</option>
+                        <option value="PAGO">{{'newoapp1App.TipoConsumod.PAGO' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.evento.valor" for="field_valor">Valor</label>
+                    <input type="number" class="form-control" name="valor" id="field_valor"
+                        [(ngModel)]="evento.valor" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.evento.impuesto" for="field_impuesto">Impuesto</label>
+                    <select class="form-control" name="impuesto" [(ngModel)]="evento.impuesto" id="field_impuesto" >
+                        <option value="IVA19">{{'newoapp1App.Impuestod.IVA19' | translate}}</option>
+                        <option value="IVA6">{{'newoapp1App.Impuestod.IVA6' | translate}}</option>
+                        <option value="IVA0">{{'newoapp1App.Impuestod.IVA0' | translate}}</option>
+                        <option value="ICO">{{'newoapp1App.Impuestod.ICO' | translate}}</option>
+                        <option value="IPOCONSUMO8">{{'newoapp1App.Impuestod.IPOCONSUMO8' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.evento.categoria" for="field_categoria">Categoria</label>
+                    <select class="form-control" name="categoria" [(ngModel)]="evento.categoria" id="field_categoria" >
+                        <option value="GENERAL">{{'newoapp1App.Categoriad.GENERAL' | translate}}</option>
+                        <option value="DE_GRUPO">{{'newoapp1App.Categoriad.DE_GRUPO' | translate}}</option>
+                        <option value="CORPORATIVO">{{'newoapp1App.Categoriad.CORPORATIVO' | translate}}</option>
+                        <option value="INSTITUCIONAL">{{'newoapp1App.Categoriad.INSTITUCIONAL' | translate}}</option>
+                        <option value="INTERNO">{{'newoapp1App.Categoriad.INTERNO' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.evento.tipoEvento" for="field_tipoEvento">Tipo Evento</label>
+                    <input type="number" class="form-control" name="tipoEvento" id="field_tipoEvento"
+                        [(ngModel)]="evento.tipoEvento" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="newoapp1App.evento.miembros" for="field_miembros">Miembros</label>
+                    <select class="form-control" id="field_miembros" name="miembros" [(ngModel)]="evento.miembros" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="miembrosOption.id === evento.miembros?.id ? evento.miembros : miembrosOption" *ngFor="let miembrosOption of miembros; trackBy: trackMiembrosById">{{miembrosOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

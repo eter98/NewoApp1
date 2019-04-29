@@ -1,0 +1,82 @@
+{
+    "name": "PerfilEquipoEmpresa",
+    "fields": [
+        {
+            "fieldName": "biografia",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "foto1",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "foto2",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "fot3",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "conocimientosQueDomina",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "temasDeInteres",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "facebook",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "instagram",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "idGoogle",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "twiter",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "empresa",
+            "otherEntityRelationshipName": "perfilEquipoEmpresa",
+            "relationshipName": "empresa",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "equipoEmpresas",
+            "otherEntityRelationshipName": "perfilEquipoEmpresa",
+            "relationshipName": "equipoEmpresas",
+            "ownerSide": false
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "productosServicios",
+            "otherEntityRelationshipName": "perfilEquipoEmpresa",
+            "relationshipName": "productosServicios",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20190429153758",
+    "entityTableName": "perfil_equipo_empresa",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

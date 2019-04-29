@@ -1,0 +1,93 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="espaciosReserva">
+            <h2><span jhiTranslate="newoapp1App.espaciosReserva.detail.title">Espacios Reserva</span> {{espaciosReserva.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="newoapp1App.espaciosReserva.nombre">Nombre</span></dt>
+                <dd>
+                    <span>{{espaciosReserva.nombre}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.espaciosReserva.descripcion">Descripcion</span></dt>
+                <dd>
+                    <span>{{espaciosReserva.descripcion}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.espaciosReserva.facilidades">Facilidades</span></dt>
+                <dd>
+                    <span>{{espaciosReserva.facilidades}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.espaciosReserva.capacidad">Capacidad</span></dt>
+                <dd>
+                    <span>{{espaciosReserva.capacidad}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.espaciosReserva.apertura">Apertura</span></dt>
+                <dd>
+                    <span>{{espaciosReserva.apertura}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.espaciosReserva.cierre">Cierre</span></dt>
+                <dd>
+                    <span>{{espaciosReserva.cierre}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.espaciosReserva.tarifa1Hora">Tarifa 1 Hora</span></dt>
+                <dd>
+                    <span>{{espaciosReserva.tarifa1Hora}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.espaciosReserva.tarifa2Hora">Tarifa 2 Hora</span></dt>
+                <dd>
+                    <span>{{espaciosReserva.tarifa2Hora}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.espaciosReserva.tarifa3Hora">Tarifa 3 Hora</span></dt>
+                <dd>
+                    <span>{{espaciosReserva.tarifa3Hora}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.espaciosReserva.tarifa4Hora">Tarifa 4 Hora</span></dt>
+                <dd>
+                    <span>{{espaciosReserva.tarifa4Hora}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.espaciosReserva.tarifa5Hora">Tarifa 5 Hora</span></dt>
+                <dd>
+                    <span>{{espaciosReserva.tarifa5Hora}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.espaciosReserva.tarifa6Hora">Tarifa 6 Hora</span></dt>
+                <dd>
+                    <span>{{espaciosReserva.tarifa6Hora}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.espaciosReserva.tarifa7Hora">Tarifa 7 Hora</span></dt>
+                <dd>
+                    <span>{{espaciosReserva.tarifa7Hora}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.espaciosReserva.tarifa8Hora">Tarifa 8 Hora</span></dt>
+                <dd>
+                    <span>{{espaciosReserva.tarifa8Hora}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.espaciosReserva.estadoReserva">Estado Reserva</span></dt>
+                <dd>
+                    <span>{{espaciosReserva.estadoReserva}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.espaciosReserva.wifi">Wifi</span></dt>
+                <dd>
+                    <span>{{espaciosReserva.wifi}}</span>
+                </dd>
+                <dt><span jhiTranslate="newoapp1App.espaciosReserva.sedes">Sedes</span></dt>
+                <dd>
+                    <div *ngIf="espaciosReserva.sedes">
+                        <a [routerLink]="['/sedes', espaciosReserva.sedes?.id, 'view']">{{espaciosReserva.sedes?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/espacios-reserva', espaciosReserva.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

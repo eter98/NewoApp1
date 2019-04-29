@@ -1,0 +1,50 @@
+{
+    "name": "ProductosServicios",
+    "fields": [
+        {
+            "fieldName": "nombreProducto",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "foto",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "inventariables",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "valor",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "impuesto",
+            "fieldType": "Impuestod",
+            "fieldValues": "IVA19,IVA6,IVA0,ICO,IPOCONSUMO8"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "perfilEquipoEmpresa",
+            "otherEntityRelationshipName": "productosServicios",
+            "relationshipName": "perfilEquipoEmpresa",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20190429153801",
+    "entityTableName": "productos_servicios",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
